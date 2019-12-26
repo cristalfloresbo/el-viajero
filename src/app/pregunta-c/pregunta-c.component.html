@@ -2,12 +2,25 @@
   <form [formGroup]="formData">
     <mat-form-field>
       <mat-label>Ciudad</mat-label>
-      <mat-select formControlName="city" (selectionChange)="updateGrapichData()">
+      <mat-select formControlName="city" (selectionChange)="updateBarGrapichData()">
         <mat-option *ngFor="let answer of answers" [value]="answer">
           {{answer.city}}
         </mat-option>
       </mat-select>
     </mat-form-field>&nbsp;
+  </form>
+  <div style="display: block;">
+    <canvas baseChart
+      [datasets]="barChartData"
+      [labels]="barChartLabels"
+      [options]="barChartOptions"
+      [plugins]="barChartPlugins"
+      [legend]="barChartLegend"
+      [chartType]="barChartType">
+    </canvas>
+  </div><br><br>
+
+  <form [formGroup]="formData">
     <mat-form-field>
       <mat-label>Año</mat-label>
       <mat-select formControlName="year" (selectionChange)="updateGrapichData()">
@@ -17,7 +30,7 @@
       </mat-select>
     </mat-form-field>
   </form>
-  <div>
+    <div>
     <canvas baseChart
     [data]="pieChartData"
     [labels]="pieChartLabels"
