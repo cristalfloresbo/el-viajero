@@ -9,9 +9,13 @@ import { AnswerA } from '../models/answer-a.model';
   providedIn: 'root'
 })
 export class DataService {
-  constructor(public httpClient: HttpClient) { }
+  url: string;
+  constructor(public httpClient: HttpClient) {
+    this.url = 'locahost:8080';
+  }
 
   public getQuestionAData() {
+    return this.httpClient.get(`${this.url}/datos/a`);
     return of<AnswerA[]>([
       {
         city: 'Cochabamba',
