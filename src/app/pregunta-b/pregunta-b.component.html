@@ -1,0 +1,25 @@
+<mat-card>
+  <form [formGroup]="formData">
+    <mat-form-field>
+      <mat-label>Ciudad</mat-label>
+      <mat-select formControlName="city" (selectionChange)="updateGrapichData()">
+        <mat-option *ngFor="let answer of answers" [value]="answer">
+          {{answer.city}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+  <div>
+    <canvas baseChart
+    [data]="pieChartData"
+    [labels]="pieChartLabels"
+    [chartType]="pieChartType"
+    [options]="pieChartOptions"
+    [plugins]="pieChartPlugins"
+    [legend]="pieChartLegend">
+  </canvas>
+  </div>
+  <h3>
+    Se recomienda <span *ngIf="withPackagePercentage <= 50">quitar o reducir</span> <span *ngIf="withPackagePercentage > 50 ">no quitar, ni reducir</span> la oferta de paquetes turísticos en esta ciudad.
+  </h3>
+</mat-card>

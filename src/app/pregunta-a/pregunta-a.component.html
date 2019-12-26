@@ -1,0 +1,38 @@
+<mat-card>
+  <form [formGroup]="formData">
+    <mat-form-field>
+      <mat-label>Ciudad</mat-label>
+      <mat-select formControlName="city" (selectionChange)="updateGrapichData()">
+        <mat-option *ngFor="let answer of answers" [value]="answer">
+          {{answer.city}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+  <div style="display: block;">
+    <canvas baseChart
+      [datasets]="barChartData"
+      [labels]="barChartLabels"
+      [options]="barChartOptions"
+      [plugins]="barChartPlugins"
+      [legend]="barChartLegend"
+      [chartType]="barChartType">
+    </canvas>
+  </div>
+  <h3 *ngIf="hotelsToImprove.length > 0">
+    Es factible realizar amplacion de los siguientes hoteles:
+    <ul>
+      <li *ngFor="let hotel of hotelsToImprove">
+        {{hotel}}
+      </li>
+    </ul>
+  </h3>
+  <h3 *ngIf="hotelsToDontImprove.length > 0">
+    No es factible realizar una amplicacion en los siguientes hoteles:
+    <ul>
+      <li *ngFor="let hotel of hotelsToDontImprove">
+        {{hotel}}
+      </li>
+    </ul>
+  </h3>
+</mat-card>

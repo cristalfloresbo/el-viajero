@@ -1,0 +1,33 @@
+<mat-card>
+  <form [formGroup]="formData">
+    <mat-form-field>
+      <mat-label>Ciudad</mat-label>
+      <mat-select formControlName="city" (selectionChange)="updateGrapichData()">
+        <mat-option *ngFor="let answer of answers" [value]="answer">
+          {{answer.city}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>&nbsp;
+    <mat-form-field>
+      <mat-label>Año</mat-label>
+      <mat-select formControlName="year" (selectionChange)="updateGrapichData()">
+        <mat-option *ngFor="let year of years" [value]="year.value">
+          {{year.year}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+  <div>
+    <canvas baseChart
+    [data]="pieChartData"
+    [labels]="pieChartLabels"
+    [chartType]="pieChartType"
+    [options]="pieChartOptions"
+    [plugins]="pieChartPlugins"
+    [legend]="pieChartLegend">
+  </canvas>
+  </div>
+  <h3>
+    {{getCityAndTotalIncome()}}
+  </h3>
+</mat-card>
